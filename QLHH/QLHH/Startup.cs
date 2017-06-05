@@ -1,19 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using QLHH.Data;
 using QLHH.Models;
 using QLHH.Services;
-
+using QLHH.BUS;
 namespace QLHH
 {
     public class Startup
@@ -38,7 +36,7 @@ namespace QLHH
         public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -49,10 +47,15 @@ namespace QLHH
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
-
-            // Add application services.
+            services.AddBUSServiceDependencies(Configuration.GetConnectionString("DefaultConnection"));
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+
+            var containerBuilder = new ContainerBuilder();
+            containerBuilder.RegisterModule<BUSModule>();
+            containerBuilder.Populate(services);
+            var container = containerBuilder.Build();
+            return new AutofacServiceProvider(container);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

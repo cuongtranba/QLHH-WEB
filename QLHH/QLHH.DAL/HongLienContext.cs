@@ -1,25 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using QLHH.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using QLHH.DAL.Model;
 
-namespace QLHH.Data
+namespace QLHH.DAL
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class HongLienContext: DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+
+        public HongLienContext(DbContextOptions<HongLienContext> options)
             : base(options)
         {
+            
         }
+
+        public DbSet<Attribute> Attributes { get; set; }
+        public DbSet<Entity> Entitys { get; set; }
+        public DbSet<EntityAttribute> EntityAttributes { get; set; }
+        public DbSet<AttributeType> AttributeTypes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
