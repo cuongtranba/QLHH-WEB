@@ -1,13 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QLHH.DAL.Model
 {
-    public class Department:BaseEntity
+    public class CompanyBrand : BaseEntity
     {
         [Key]
-        public int DepartmentId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int CompanyBrandId { get; set; }
         [StringLength(50)]
-        public string DepartmentName { get; set; }
+        public string CompanyBrandName { get; set; }
         [StringLength(50)]
         public string Address { get; set; }
         [StringLength(50)]

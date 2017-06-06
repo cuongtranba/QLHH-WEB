@@ -8,8 +8,8 @@ using QLHH.DAL;
 namespace QLHH.Migrations
 {
     [DbContext(typeof(HongLienContext))]
-    [Migration("20170605143125_init")]
-    partial class init
+    [Migration("20170606125553_newtable")]
+    partial class newtable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,6 +26,8 @@ namespace QLHH.Migrations
                         .HasMaxLength(50);
 
                     b.Property<int>("AttributeTypeId");
+
+                    b.Property<DateTime>("CreatedDate");
 
                     b.Property<string>("DataSourceUrl")
                         .HasMaxLength(50);
@@ -52,6 +54,8 @@ namespace QLHH.Migrations
                     b.Property<string>("AttributeTypeName")
                         .HasMaxLength(50);
 
+                    b.Property<DateTime>("CreatedDate");
+
                     b.Property<bool>("IsDeleted");
 
                     b.HasKey("AttributeTypeId");
@@ -59,10 +63,77 @@ namespace QLHH.Migrations
                     b.ToTable("AttributeTypes");
                 });
 
+            modelBuilder.Entity("QLHH.DAL.Model.Category", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CategoryName")
+                        .HasMaxLength(50);
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("Detail");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("QLHH.DAL.Model.CategoryDetail", b =>
+                {
+                    b.Property<int>("CategoryDetailId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CategoryDetailName");
+
+                    b.Property<int>("CategoryId");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.HasKey("CategoryDetailId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("CategoryDetails");
+                });
+
+            modelBuilder.Entity("QLHH.DAL.Model.CompanyBrand", b =>
+                {
+                    b.Property<int>("CompanyBrandId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Address")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("CompanyBrandName")
+                        .HasMaxLength(50);
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("Fax")
+                        .HasMaxLength(50);
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<string>("Phone")
+                        .HasMaxLength(50);
+
+                    b.HasKey("CompanyBrandId");
+
+                    b.ToTable("CompanyBrands");
+                });
+
             modelBuilder.Entity("QLHH.DAL.Model.Entity", b =>
                 {
                     b.Property<int>("EntityId")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreatedDate");
 
                     b.Property<string>("EntityName")
                         .HasMaxLength(50);
@@ -83,6 +154,8 @@ namespace QLHH.Migrations
 
                     b.Property<int>("Column");
 
+                    b.Property<DateTime>("CreatedDate");
+
                     b.Property<string>("EntityAttributeValue")
                         .IsRequired();
 
@@ -90,7 +163,8 @@ namespace QLHH.Migrations
 
                     b.Property<bool>("IsDeleted");
 
-                    b.Property<int>("Row");
+                    b.Property<int>("Row")
+                        .ValueGeneratedOnAdd();
 
                     b.HasKey("EntityAttributeId");
 
@@ -101,11 +175,52 @@ namespace QLHH.Migrations
                     b.ToTable("EntityAttributes");
                 });
 
+            modelBuilder.Entity("QLHH.DAL.Model.Tax", b =>
+                {
+                    b.Property<int>("TaxId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<string>("TaxName")
+                        .HasMaxLength(50);
+
+                    b.HasKey("TaxId");
+
+                    b.ToTable("Taxs");
+                });
+
+            modelBuilder.Entity("QLHH.DAL.Model.Warehouse", b =>
+                {
+                    b.Property<int>("WarehouseId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("WarehouseId");
+
+                    b.ToTable("Warehouses");
+                });
+
             modelBuilder.Entity("QLHH.DAL.Model.Attribute", b =>
                 {
                     b.HasOne("QLHH.DAL.Model.AttributeType", "AttributeType")
                         .WithMany()
                         .HasForeignKey("AttributeTypeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("QLHH.DAL.Model.CategoryDetail", b =>
+                {
+                    b.HasOne("QLHH.DAL.Model.Category", "Category")
+                        .WithMany("CategoryDetails")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

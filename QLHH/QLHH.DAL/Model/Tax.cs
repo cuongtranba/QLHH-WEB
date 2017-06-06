@@ -3,11 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QLHH.DAL.Model
 {
-    public class Warehouse:BaseEntity
+    public class Tax : BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int WarehouseId { get; set; }
-        public string Name { get; set; }
+        public int TaxId { get; set; }
+        [StringLength(50)]
+        public string TaxName { get; set; }
     }
 }
