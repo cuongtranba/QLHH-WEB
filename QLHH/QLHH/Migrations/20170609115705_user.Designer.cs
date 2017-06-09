@@ -8,9 +8,10 @@ using QLHH.DAL;
 namespace QLHH.Migrations
 {
     [DbContext(typeof(HongLienContext))]
-    partial class HongLienContextModelSnapshot : ModelSnapshot
+    [Migration("20170609115705_user")]
+    partial class user
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")
