@@ -11,6 +11,7 @@
         <link href="~/js/sb-admin.css" rel="stylesheet" />
         <link href="~/lib/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
         <link href="~/lib/select2-4.0.3/dist/css/select2.css" rel="stylesheet" />
+        <link href="~/css/site.css" rel="stylesheet" />
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -145,10 +146,6 @@
     </div>
     <div class="container">
         @RenderBody()
-        <div id="messages" class="hide" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <div id="messages_content"></div>
-        </div>
     </div>
     <footer class="text-center">
         <p>&copy; 2017 - QLHH</p>
@@ -157,6 +154,7 @@
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/lib/select2-4.0.3/dist/js/select2.js"></script>
+        <script src="~/lib/remarkable-bootstrap-notify/dist/bootstrap-notify.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
     <environment names="Staging,Production">
