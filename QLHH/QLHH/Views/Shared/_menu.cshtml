@@ -17,8 +17,16 @@
         <li>
             <a href="#"><i class="fa fa-fw fa-edit"></i> Công nợ</a>
         </li>
-        <li>
-            <a href="#"><i class="fa fa-fw fa-desktop"></i> Hàng hóa</a>
+        <li class="@IsActiveClass(Url.Action("Index","HangHoa"))">
+            <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Hàng hóa <i class="fa fa-fw fa-caret-down"></i></a>
+            <ul id="demo" class="collapse">
+                <li>
+                    <a href="@Url.Action("PhieuNhap","HangHoa")">Phiếu nhập</a>
+                </li>
+                <li>
+                    <a href="#">Phiếu xuất</a>
+                </li>
+            </ul>
         </li>
         <li>
             <a href="#"><i class="fa fa-fw fa-wrench"></i> Giá Thành</a>

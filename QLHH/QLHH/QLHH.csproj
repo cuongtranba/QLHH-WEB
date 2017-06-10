@@ -14,6 +14,27 @@
 
   <ItemGroup>
     <Content Include="wwwroot\js\sb-admin.css" />
+    <Content Include="wwwroot\lib\bootstrap3-editable-1.5.1.zip" />
+    <Content Include="wwwroot\lib\bootstrap3-editable-1.5.1\bootstrap3-editable\css\bootstrap-editable.css" />
+    <Content Include="wwwroot\lib\bootstrap3-editable-1.5.1\bootstrap3-editable\img\clear.png" />
+    <Content Include="wwwroot\lib\bootstrap3-editable-1.5.1\bootstrap3-editable\img\loading.gif" />
+    <Content Include="wwwroot\lib\bootstrap3-editable-1.5.1\bootstrap3-editable\js\bootstrap-editable.js" />
+    <Content Include="wwwroot\lib\bootstrap3-editable-1.5.1\bootstrap3-editable\js\bootstrap-editable.min.js" />
+    <Content Include="wwwroot\lib\bootstrap3-editable-1.5.1\CHANGELOG.txt" />
+    <Content Include="wwwroot\lib\bootstrap3-editable-1.5.1\inputs-ext\address\address.css" />
+    <Content Include="wwwroot\lib\bootstrap3-editable-1.5.1\inputs-ext\address\address.js" />
+    <Content Include="wwwroot\lib\bootstrap3-editable-1.5.1\inputs-ext\typeaheadjs\lib\typeahead.js" />
+    <Content Include="wwwroot\lib\bootstrap3-editable-1.5.1\inputs-ext\typeaheadjs\lib\typeahead.js-bootstrap.css" />
+    <Content Include="wwwroot\lib\bootstrap3-editable-1.5.1\inputs-ext\typeaheadjs\typeaheadjs.js" />
+    <Content Include="wwwroot\lib\bootstrap3-editable-1.5.1\inputs-ext\wysihtml5\bootstrap-wysihtml5-0.0.2\bootstrap-wysihtml5-0.0.2.css" />
+    <Content Include="wwwroot\lib\bootstrap3-editable-1.5.1\inputs-ext\wysihtml5\bootstrap-wysihtml5-0.0.2\bootstrap-wysihtml5-0.0.2.js" />
+    <Content Include="wwwroot\lib\bootstrap3-editable-1.5.1\inputs-ext\wysihtml5\bootstrap-wysihtml5-0.0.2\bootstrap-wysihtml5-0.0.2.min.js" />
+    <Content Include="wwwroot\lib\bootstrap3-editable-1.5.1\inputs-ext\wysihtml5\bootstrap-wysihtml5-0.0.2\wysihtml5-0.3.0.js" />
+    <Content Include="wwwroot\lib\bootstrap3-editable-1.5.1\inputs-ext\wysihtml5\bootstrap-wysihtml5-0.0.2\wysihtml5-0.3.0.min.js" />
+    <Content Include="wwwroot\lib\bootstrap3-editable-1.5.1\inputs-ext\wysihtml5\bootstrap-wysihtml5-0.0.2\wysiwyg-color.css" />
+    <Content Include="wwwroot\lib\bootstrap3-editable-1.5.1\inputs-ext\wysihtml5\wysihtml5.js" />
+    <Content Include="wwwroot\lib\bootstrap3-editable-1.5.1\LICENSE-MIT" />
+    <Content Include="wwwroot\lib\bootstrap3-editable-1.5.1\README.md" />
     <Content Include="wwwroot\lib\font-awesome-4.7.0\css\font-awesome.css" />
     <Content Include="wwwroot\lib\font-awesome-4.7.0\css\font-awesome.min.css" />
     <Content Include="wwwroot\lib\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
@@ -550,7 +571,9 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Cross\Cross.csproj" />
     <ProjectReference Include="..\QLHH.BUS\QLHH.BUS.csproj" />
+    <ProjectReference Include="..\QLHH.DAL\QLHH.DAL.csproj" />
   </ItemGroup>
 
 </Project>

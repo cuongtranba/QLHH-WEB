@@ -4,17 +4,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QLHH.DAL.Model
 {
-    public class Entity : BaseEntity
+    public class EntityTypeAttribute : BaseEntity
     {
-        public Entity()
-        {
-            EntityAttributes = new List<EntityAttribute>();
-        }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int EntityId { get; set; }
-        public virtual ICollection<EntityAttribute> EntityAttributes { get; set; }
+        public int EntityTypeAttributeId { get; set; }
         public virtual EntityType EntityType { get; set; }
+        public virtual Attribute Attribute { get; set; }
+        public int AttributeId { get; set; }
         public int EntityTypeId { get; set; }
+
     }
 }

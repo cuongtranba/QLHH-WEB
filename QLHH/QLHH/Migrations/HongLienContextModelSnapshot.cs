@@ -156,14 +156,15 @@ namespace QLHH.Migrations
 
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<string>("EntityName")
-                        .HasMaxLength(50);
+                    b.Property<int>("EntityTypeId");
 
                     b.Property<bool>("IsDeleted");
 
                     b.Property<int>("UpdatedByUserId");
 
                     b.HasKey("EntityId");
+
+                    b.HasIndex("EntityTypeId");
 
                     b.ToTable("Entitys");
                 });
@@ -199,6 +200,53 @@ namespace QLHH.Migrations
                     b.HasIndex("EntityId");
 
                     b.ToTable("EntityAttributes");
+                });
+
+            modelBuilder.Entity("QLHH.DAL.Model.EntityType", b =>
+                {
+                    b.Property<int>("EntityTypeId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CreatedByUserId");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("EntityTypeName")
+                        .HasMaxLength(50);
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<int>("UpdatedByUserId");
+
+                    b.HasKey("EntityTypeId");
+
+                    b.ToTable("EntityTypes");
+                });
+
+            modelBuilder.Entity("QLHH.DAL.Model.EntityTypeAttribute", b =>
+                {
+                    b.Property<int>("EntityTypeAttributeId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AttributeId");
+
+                    b.Property<int>("CreatedByUserId");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<int>("EntityTypeId");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<int>("UpdatedByUserId");
+
+                    b.HasKey("EntityTypeAttributeId");
+
+                    b.HasIndex("AttributeId");
+
+                    b.HasIndex("EntityTypeId");
+
+                    b.ToTable("EntityTypeAttributes");
                 });
 
             modelBuilder.Entity("QLHH.DAL.Model.Tax", b =>
@@ -258,6 +306,14 @@ namespace QLHH.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("QLHH.DAL.Model.Entity", b =>
+                {
+                    b.HasOne("QLHH.DAL.Model.EntityType", "EntityType")
+                        .WithMany("Entities")
+                        .HasForeignKey("EntityTypeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("QLHH.DAL.Model.EntityAttribute", b =>
                 {
                     b.HasOne("QLHH.DAL.Model.Attribute", "Attribute")
@@ -268,6 +324,19 @@ namespace QLHH.Migrations
                     b.HasOne("QLHH.DAL.Model.Entity", "Entity")
                         .WithMany("EntityAttributes")
                         .HasForeignKey("EntityId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("QLHH.DAL.Model.EntityTypeAttribute", b =>
+                {
+                    b.HasOne("QLHH.DAL.Model.Attribute", "Attribute")
+                        .WithMany("EntityTypeAttributes")
+                        .HasForeignKey("AttributeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("QLHH.DAL.Model.EntityType", "EntityType")
+                        .WithMany("EntityTypeAttributes")
+                        .HasForeignKey("EntityTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }

@@ -10,6 +10,7 @@ namespace QLHH.DAL.Model
         {
             IsRequired = false;
             EntityAttributes = new List<EntityAttribute>();
+            EntityTypeAttributes = new List<EntityTypeAttribute>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -22,5 +23,6 @@ namespace QLHH.DAL.Model
         public virtual AttributeType AttributeType { get; set; }
         public bool IsRequired { get; set; }
         public virtual ICollection<EntityAttribute> EntityAttributes { get; set; }
+        public virtual ICollection<EntityTypeAttribute> EntityTypeAttributes { get; set; }
     }
 }

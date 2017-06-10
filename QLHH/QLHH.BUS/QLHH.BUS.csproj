@@ -9,12 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Cross\Cross.csproj" />
     <ProjectReference Include="..\QLHH.DAL\QLHH.DAL.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Implements\" />
   </ItemGroup>
 
 </Project>

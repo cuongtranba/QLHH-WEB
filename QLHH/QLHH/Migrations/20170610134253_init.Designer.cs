@@ -8,8 +8,8 @@ using QLHH.DAL;
 namespace QLHH.Migrations
 {
     [DbContext(typeof(HongLienContext))]
-    [Migration("20170609115705_user")]
-    partial class user
+    [Migration("20170610134253_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -34,6 +34,8 @@ namespace QLHH.Migrations
                     b.Property<string>("DataSourceUrl")
                         .HasMaxLength(50);
 
+                    b.Property<int?>("EntityTypeAttributeId");
+
                     b.Property<bool>("IsDeleted");
 
                     b.Property<bool>("IsRequired");
@@ -43,6 +45,8 @@ namespace QLHH.Migrations
                     b.HasKey("AttributeId");
 
                     b.HasIndex("AttributeTypeId");
+
+                    b.HasIndex("EntityTypeAttributeId");
 
                     b.ToTable("Attributes");
                 });
@@ -157,14 +161,15 @@ namespace QLHH.Migrations
 
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<string>("EntityName")
-                        .HasMaxLength(50);
+                    b.Property<int>("EntityTypeId");
 
                     b.Property<bool>("IsDeleted");
 
                     b.Property<int>("UpdatedByUserId");
 
                     b.HasKey("EntityId");
+
+                    b.HasIndex("EntityTypeId");
 
                     b.ToTable("Entitys");
                 });
@@ -200,6 +205,49 @@ namespace QLHH.Migrations
                     b.HasIndex("EntityId");
 
                     b.ToTable("EntityAttributes");
+                });
+
+            modelBuilder.Entity("QLHH.DAL.Model.EntityType", b =>
+                {
+                    b.Property<int>("EntityTypeId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CreatedByUserId");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<int?>("EntityTypeAttributeId");
+
+                    b.Property<string>("EntityTypeName")
+                        .HasMaxLength(50);
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<int>("UpdatedByUserId");
+
+                    b.HasKey("EntityTypeId");
+
+                    b.HasIndex("EntityTypeAttributeId");
+
+                    b.ToTable("EntityTypes");
+                });
+
+            modelBuilder.Entity("QLHH.DAL.Model.EntityTypeAttribute", b =>
+                {
+                    b.Property<int>("EntityTypeAttributeId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CreatedByUserId");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<int>("UpdatedByUserId");
+
+                    b.HasKey("EntityTypeAttributeId");
+
+                    b.ToTable("EntityTypeAttributes");
                 });
 
             modelBuilder.Entity("QLHH.DAL.Model.Tax", b =>
@@ -249,6 +297,10 @@ namespace QLHH.Migrations
                         .WithMany()
                         .HasForeignKey("AttributeTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("QLHH.DAL.Model.EntityTypeAttribute", "EntityTypeAttribute")
+                        .WithMany("Attributes")
+                        .HasForeignKey("EntityTypeAttributeId");
                 });
 
             modelBuilder.Entity("QLHH.DAL.Model.CategoryDetail", b =>
@@ -256,6 +308,14 @@ namespace QLHH.Migrations
                     b.HasOne("QLHH.DAL.Model.Category", "Category")
                         .WithMany("CategoryDetails")
                         .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("QLHH.DAL.Model.Entity", b =>
+                {
+                    b.HasOne("QLHH.DAL.Model.EntityType", "EntityType")
+                        .WithMany("Entities")
+                        .HasForeignKey("EntityTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -270,6 +330,13 @@ namespace QLHH.Migrations
                         .WithMany("EntityAttributes")
                         .HasForeignKey("EntityId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("QLHH.DAL.Model.EntityType", b =>
+                {
+                    b.HasOne("QLHH.DAL.Model.EntityTypeAttribute", "EntityTypeAttribute")
+                        .WithMany("EntityTypes")
+                        .HasForeignKey("EntityTypeAttributeId");
                 });
         }
     }

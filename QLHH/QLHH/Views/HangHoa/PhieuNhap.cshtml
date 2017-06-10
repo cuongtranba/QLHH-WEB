@@ -1,0 +1,12 @@
+﻿@model QLHH.DAL.Model.Entity
+@{
+    ViewBag.Title = "Phiếu nhập";
+}
+<h1>
+    Phiếu Nhập
+</h1>
+
+@foreach (var item in Model.EntityAttributes)
+{
+    @Html.EditorFor(c=>c,item.Attribute.AttributeType.AttributeTypeName)
+}

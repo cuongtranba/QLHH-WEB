@@ -3,7 +3,7 @@ var helper = {};
 
 //statis value
 (function (helper) {
-   
+
 
 })(helper || {});
 
@@ -20,7 +20,12 @@ var helper = {};
             if (data.submitUrl) {
                 $.post(data.submitUrl, { key: data.pk, value: currentValue }, function (result) {
                     if (result.results === true) {
-                        $.notify({message: 'Thành công'}, {type: 'success'});
+                        $.notify({ message: 'Thành công' }, {
+                            type: 'success', animate: {
+                                enter: 'animated fadeInRight',
+                                exit: 'animated fadeOutRight'
+                            }
+                        });
                     } else {
                         $.notify({ message: 'Lỗi' }, { type: 'danger' });
                     }

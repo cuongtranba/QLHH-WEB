@@ -21,7 +21,8 @@ namespace QLHH.DAL
         public DbSet<CompanyBrand> CompanyBrands { get; set; }
         public DbSet<Tax> Taxs { get; set; }
         public DbSet<CategoryDetail> CategoryDetails { get; set; }
-
+        public DbSet<EntityType> EntityTypes { get; set; }
+        public DbSet<EntityTypeAttribute> EntityTypeAttributes { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

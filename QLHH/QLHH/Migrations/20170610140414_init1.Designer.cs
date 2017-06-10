@@ -8,8 +8,8 @@ using QLHH.DAL;
 namespace QLHH.Migrations
 {
     [DbContext(typeof(HongLienContext))]
-    [Migration("20170606125553_newtable")]
-    partial class newtable
+    [Migration("20170610140414_init1")]
+    partial class init1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,6 +27,8 @@ namespace QLHH.Migrations
 
                     b.Property<int>("AttributeTypeId");
 
+                    b.Property<int>("CreatedByUserId");
+
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<string>("DataSourceUrl")
@@ -35,6 +37,8 @@ namespace QLHH.Migrations
                     b.Property<bool>("IsDeleted");
 
                     b.Property<bool>("IsRequired");
+
+                    b.Property<int>("UpdatedByUserId");
 
                     b.HasKey("AttributeId");
 
@@ -54,9 +58,13 @@ namespace QLHH.Migrations
                     b.Property<string>("AttributeTypeName")
                         .HasMaxLength(50);
 
+                    b.Property<int>("CreatedByUserId");
+
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<bool>("IsDeleted");
+
+                    b.Property<int>("UpdatedByUserId");
 
                     b.HasKey("AttributeTypeId");
 
@@ -71,11 +79,15 @@ namespace QLHH.Migrations
                     b.Property<string>("CategoryName")
                         .HasMaxLength(50);
 
+                    b.Property<int>("CreatedByUserId");
+
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<string>("Detail");
 
                     b.Property<bool>("IsDeleted");
+
+                    b.Property<int>("UpdatedByUserId");
 
                     b.HasKey("CategoryId");
 
@@ -91,9 +103,13 @@ namespace QLHH.Migrations
 
                     b.Property<int>("CategoryId");
 
+                    b.Property<int>("CreatedByUserId");
+
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<bool>("IsDeleted");
+
+                    b.Property<int>("UpdatedByUserId");
 
                     b.HasKey("CategoryDetailId");
 
@@ -113,6 +129,8 @@ namespace QLHH.Migrations
                     b.Property<string>("CompanyBrandName")
                         .HasMaxLength(50);
 
+                    b.Property<int>("CreatedByUserId");
+
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<string>("Fax")
@@ -122,6 +140,8 @@ namespace QLHH.Migrations
 
                     b.Property<string>("Phone")
                         .HasMaxLength(50);
+
+                    b.Property<int>("UpdatedByUserId");
 
                     b.HasKey("CompanyBrandId");
 
@@ -133,14 +153,19 @@ namespace QLHH.Migrations
                     b.Property<int>("EntityId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("CreatedByUserId");
+
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<string>("EntityName")
-                        .HasMaxLength(50);
+                    b.Property<int>("EntityTypeId");
 
                     b.Property<bool>("IsDeleted");
 
+                    b.Property<int>("UpdatedByUserId");
+
                     b.HasKey("EntityId");
+
+                    b.HasIndex("EntityTypeId");
 
                     b.ToTable("Entitys");
                 });
@@ -154,6 +179,8 @@ namespace QLHH.Migrations
 
                     b.Property<int>("Column");
 
+                    b.Property<int>("CreatedByUserId");
+
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<string>("EntityAttributeValue")
@@ -163,8 +190,9 @@ namespace QLHH.Migrations
 
                     b.Property<bool>("IsDeleted");
 
-                    b.Property<int>("Row")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("Row");
+
+                    b.Property<int>("UpdatedByUserId");
 
                     b.HasKey("EntityAttributeId");
 
@@ -175,10 +203,59 @@ namespace QLHH.Migrations
                     b.ToTable("EntityAttributes");
                 });
 
+            modelBuilder.Entity("QLHH.DAL.Model.EntityType", b =>
+                {
+                    b.Property<int>("EntityTypeId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CreatedByUserId");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("EntityTypeName")
+                        .HasMaxLength(50);
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<int>("UpdatedByUserId");
+
+                    b.HasKey("EntityTypeId");
+
+                    b.ToTable("EntityTypes");
+                });
+
+            modelBuilder.Entity("QLHH.DAL.Model.EntityTypeAttribute", b =>
+                {
+                    b.Property<int>("EntityTypeAttributeId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AttributeId");
+
+                    b.Property<int>("CreatedByUserId");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<int>("EntityTypeId");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<int>("UpdatedByUserId");
+
+                    b.HasKey("EntityTypeAttributeId");
+
+                    b.HasIndex("AttributeId");
+
+                    b.HasIndex("EntityTypeId");
+
+                    b.ToTable("EntityTypeAttributes");
+                });
+
             modelBuilder.Entity("QLHH.DAL.Model.Tax", b =>
                 {
                     b.Property<int>("TaxId")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CreatedByUserId");
 
                     b.Property<DateTime>("CreatedDate");
 
@@ -186,6 +263,8 @@ namespace QLHH.Migrations
 
                     b.Property<string>("TaxName")
                         .HasMaxLength(50);
+
+                    b.Property<int>("UpdatedByUserId");
 
                     b.HasKey("TaxId");
 
@@ -197,11 +276,15 @@ namespace QLHH.Migrations
                     b.Property<int>("WarehouseId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("CreatedByUserId");
+
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<bool>("IsDeleted");
 
                     b.Property<string>("Name");
+
+                    b.Property<int>("UpdatedByUserId");
 
                     b.HasKey("WarehouseId");
 
@@ -224,6 +307,14 @@ namespace QLHH.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("QLHH.DAL.Model.Entity", b =>
+                {
+                    b.HasOne("QLHH.DAL.Model.EntityType", "EntityType")
+                        .WithMany("Entities")
+                        .HasForeignKey("EntityTypeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("QLHH.DAL.Model.EntityAttribute", b =>
                 {
                     b.HasOne("QLHH.DAL.Model.Attribute", "Attribute")
@@ -234,6 +325,19 @@ namespace QLHH.Migrations
                     b.HasOne("QLHH.DAL.Model.Entity", "Entity")
                         .WithMany("EntityAttributes")
                         .HasForeignKey("EntityId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("QLHH.DAL.Model.EntityTypeAttribute", b =>
+                {
+                    b.HasOne("QLHH.DAL.Model.Attribute", "Attribute")
+                        .WithMany("EntityTypeAttributes")
+                        .HasForeignKey("AttributeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("QLHH.DAL.Model.EntityType", "EntityType")
+                        .WithMany("EntityTypeAttributes")
+                        .HasForeignKey("EntityTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }
