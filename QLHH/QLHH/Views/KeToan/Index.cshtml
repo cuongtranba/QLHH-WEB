@@ -1,5 +1,33 @@
-﻿@{
+﻿@using QLHH.TagHelpers
+@model TestSelect2
+@{
     ViewBag.title = "kế toán";
     Layout = "_Layout";
+    var source = new List<Select2Item>()
+    {
+        new Select2Item()
+        {
+            id = "1",text = "asdasdasd"
+        },new Select2Item()
+        {
+            id = "1",text = "asdasdasd"
+        },new Select2Item()
+        {
+            id = "1",text = "asdasdasd"
+        },new Select2Item()
+        {
+            id = "1",text = "asdasdasd"
+        },new Select2Item()
+        {
+            id = "1",text = "asdasdasd"
+        },new Select2Item()
+        {
+            id = "1",text = "asdasdasd"
+        },
+    };
 }
+<select2 asp-for="Id" class="form-control" data-placeholder="Select an option" name="Email" Source="@source" multiple="multiple" />
+<select2 asp-for="Id" class="form-control" data-placeholder="Select an option ajax" name="Email" data-ajax--url="@Url.Action("Index","DataSource")" data-ajax--cache="true" data-ajax--dataType="json" multiple="multiple" />
+<select2 asp-for="Id" class="form-control" data-ajax--dataType="json" data-placeholder="Select an option ajax" name="Email" data-ajax--delay="250" data-ajax--url="@Url.Action("Index","DataSource")" data-ajax--cache="true" data-submit-url ="@Url.Action("Submit","DataSource")" data-pk="1"  />
+
 
