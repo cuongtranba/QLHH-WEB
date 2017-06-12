@@ -1,2 +1,9 @@
-@model QLHH.DAL.Model.Entity
+﻿@model QLHH.DAL.Model.EntityAttribute
+@{
+    var fieldName = ViewData["FieldName"];
+}
 
+<label class="col-md-2 control-label">@Model.Attribute.AttributeName</label>
+<div class="col-md-10">
+    <select2 class="form-control" name="@fieldName" data-placeholder="chọn @Model.Attribute.AttributeName" data-minimum-input-length="1" data-ajax--cache="true" data-ajax--url="@Url.Action("Index","DataSource")" data-ajax--dataType="json" />
+</div>

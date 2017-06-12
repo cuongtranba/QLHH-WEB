@@ -11,7 +11,7 @@ var helper = {};
     helper.InitSelect2 = function () {
         //for select2
         $('.select2').select2({
-            minimumInputLength: 1
+
         });
         //for ajax select 2
         $('select').on('select2:select', function (evt) {
@@ -41,3 +41,5 @@ var helper = {};
 
 //init select2 function
 helper.InitSelect2();
+//init datetimepicker
+$('.datepicker').datepicker();

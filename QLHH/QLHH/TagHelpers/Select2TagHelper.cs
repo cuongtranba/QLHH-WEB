@@ -14,7 +14,7 @@ namespace QLHH.TagHelpers
         {
             Source = new List<Select2Item>();
         }
-        [HtmlAttributeName("asp-for")]
+        [HtmlAttributeName("asp-for-model")]
         public ModelExpression AspForExpression { get; set; }
         [HtmlAttributeName("asp-for")]
         public string AspForString { get; set; }

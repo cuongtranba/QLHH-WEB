@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Globalization;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -45,7 +47,7 @@ namespace QLHH
             services.AddIdentity<ApplicationUser, IdentityRole<int>>()
                 .AddEntityFrameworkStores<ApplicationDbContext,int>()
                 .AddDefaultTokenProviders();
-
+            
             services.AddMvc();
             services.AddBUSServiceDependencies(Configuration.GetConnectionString("DefaultConnection"));
             services.AddTransient<IEmailSender, AuthMessageSender>();
@@ -74,7 +76,19 @@ namespace QLHH
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            var supportedCultures = new[]
+            {
+                new CultureInfo("vi-VN"),
+            };
 
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("vi-VN"),
+                // Formatting numbers, dates, etc.
+                SupportedCultures = supportedCultures,
+                // UI strings that we have localized.
+                SupportedUICultures = supportedCultures
+            });
             app.UseStaticFiles();
 
             app.UseIdentity();

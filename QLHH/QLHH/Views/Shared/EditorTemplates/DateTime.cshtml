@@ -1,1 +1,15 @@
-@model QLHH.DAL.Model.Entity
+﻿@model QLHH.DAL.Model.EntityAttribute
+@{
+    var fieldName = ViewData["FieldName"];
+}
+
+<label class="col-md-2 control-label">@Model.Attribute.AttributeName</label>
+<div class="col-md-10">
+    <input type="text" class="form-control datepicker" data-date-format="dd/mm/yyyy" placeholder="chọn @Model.Attribute.AttributeName" value="@Model.EntityAttributeValue">
+</div>
+@*<div class="input-group date" data-provide="datepicker">
+    <input type="text" class="form-control">
+    <div class="input-group-addon">
+        <span class="glyphicon glyphicon-th"></span>
+    </div>
+</div>*@

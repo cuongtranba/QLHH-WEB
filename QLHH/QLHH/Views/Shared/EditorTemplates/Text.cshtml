@@ -1,2 +1,9 @@
-@model QLHH.DAL.Model.Entity
+﻿@model QLHH.DAL.Model.EntityAttribute
+@{
+    var fieldName = ViewData["FieldName"];
+}
 
+<label class="col-md-2 control-label">@Model.Attribute.AttributeName</label>
+<div class="col-md-10">
+    <input class="form-control" type="text" name="@fieldName" placeholder="chọn @Model.Attribute.AttributeName" value="@Model.EntityAttributeValue" />
+</div>

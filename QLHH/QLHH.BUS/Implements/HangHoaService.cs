@@ -26,7 +26,8 @@ namespace QLHH.BUS.Implements
                     {
                         Attribute = new Attribute()
                         {
-                            AttributeType = c.Attribute.AttributeType
+                            AttributeType = c.Attribute.AttributeType,
+                            AttributeName = c.Attribute.AttributeName
                         }
                     }).ToList();
             return entityAttributeForPhieuNhap;
