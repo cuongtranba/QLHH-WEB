@@ -13,7 +13,7 @@ namespace QLHH.DAL.Model
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int EntityId { get; set; }
-        public virtual ICollection<EntityAttribute> EntityAttributes { get; set; }
+        public virtual List<EntityAttribute> EntityAttributes { get; set; }
         public virtual EntityType EntityType { get; set; }
         public int EntityTypeId { get; set; }
     }

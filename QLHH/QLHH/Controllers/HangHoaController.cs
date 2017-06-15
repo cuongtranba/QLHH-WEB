@@ -20,7 +20,7 @@ namespace QLHH.Controllers
         {
             return View();
         }
-        
+
         public IActionResult PhieuNhap()
         {
             var getattributeForPhieunhap = _hangHoaService.GetAttributeByType(EntityTypes.PhieuNhap);
@@ -36,7 +36,7 @@ namespace QLHH.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+
             }
             return View();
         }
